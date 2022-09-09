@@ -76,9 +76,7 @@ function sleep(delay) {
     });
 }
 
-//sorting algorithms
-//bubble sort
-async function bubbleSort() {
+async function BubbleSort() {
     var stuff = globals.bar.children;
     for (let i = 0; i < stuff.length - 1; i++) {
         for (let j = 0; j < stuff.length - i - 1; j++) {
@@ -107,8 +105,7 @@ async function bubbleSort() {
     enable();
 }
 
-//insertionSort
-async function insertionSort() {
+async function InsertionSort() {
     var stuff = globals.bar;
     var l = stuff.length;
     globals.submitAlgorithmBtn.innerHTML = "Sorting..";
@@ -150,37 +147,14 @@ async function selectionSort() {
     console.log("selection sort is sorted");
 }
 
-algorithmSelect = globals.algorithms;
+const algos = {
+    BubbleSort,
+    InsertionSort,
+};
 
-let selected = "";
-algorithmSelect.addEventListener("change", function () {
-    selected = algorithmSelect.options[algorithmSelect.selectedIndex].text;
-    console.log("selected inside", selected);
-});
+const notImplementedAlgo = (name) => alert(`${name} not completed yet.`);
 
 globals.submitAlgorithmBtn.addEventListener("click", function () {
-    console.log("selected:", selected);
-    switch (selected) {
-        case "Bubble sort":
-            bubbleSort();
-            break;
-        case "Insertion sort":
-            insertionSort();
-            break;
-        case "Merge sort":
-            alert("Not completed yet");
-            break;
-        case "Quick sort":
-            alert("Not completed yet");
-            break;
-        case "Selection sort":
-            alert("Not completed yet ");
-            break;
-        default:
-            bubbleSort();
-            console.log("Default");
-            break;
-    }
+    const algo = algos[globals.algorithms.value] || notImplementedAlgo;
+    algo();
 });
-
-//written by akhilesh
