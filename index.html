@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,67 +8,58 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script defer src="js/script.js"></script>
+  </head>
+  <body>
     <section class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Sorting algorithm Visualizer</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <button id="NewArray" class="btn btn-info">New array</button>
-                </li>
-                <li class="nav-item align-middle">
-                    <p style="color:white;" class="my-auto">speed</span></p>
-                    <input id="speed" type="range" min="6" max="60" step=3 value=33>
-                </li>
-                <li class="nav-item align-middle" id="ArraySize">
-                  <p style="color:white;" class="my-auto">Array Size: <span id="arrayValue">50</span></p>
-                  <input id="size" type="range" min="20" max="100" stepDown=10 value=50>
-              </li>
-                  <div class="algorithms nav-item inline" id="SelectingAlgorithm">
-                    <label for="SortingAlgorithms" class="text-white">Choose an algorithm:</label>
-                      <select name="algorithms" id="algorithms">
-                        <option id="BubbleSort" value="BubbleSort">Bubble sort</option>
-                        <option id="InsertionSort" value="InsertionSort">Insertion sort</option>
-                        <option id="MergeSort" value="MergeSort">Merge sort</option>
-                        <option id="QuickSort" value="QuickSort">Quick sort</option>
-                        <option id="SelectionSort" value="SelectionSort">Selection sort</option>
-                      </select>
-                      <button id="SubmitAlgorithm" class="btn btn-primary" style="padding:0px 10px 0px 10px">Sort</button>
-                  </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Sorting algorithm Visualizer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <button id="newArrayBtn" class="btn btn-info">New array</button>
+            </li>
+            <li class="nav-item align-middle">
+              <p style="color:white;" class="my-auto">speed </span>
+              </p>
+              <input id="speed" type="range" min="6" max="60" step=3 value=33>
+            </li>
+            <li class="nav-item align-middle" id="ArraySize">
+              <p style="color:white;" class="my-auto">Array Size: <span id="arrayValue">50</span>
+              </p>
+              <input id="size" type="range" min="20" max="100" stepDown=10 value=50>
+            </li>
+            <div class="algorithms nav-item inline" id="SelectingAlgorithm">
+              <label for="SortingAlgorithms" class="text-white">Choose an algorithm:</label>
+              <select name="algorithms" id="algorithms">
+                <option id="BubbleSort" value="BubbleSort">Bubble sort</option>
+                <option id="InsertionSort" value="InsertionSort">Insertion sort</option>
+                <option id="MergeSort" value="MergeSort">Merge sort</option>
+                <option id="QuickSort" value="QuickSort">Quick sort</option>
+                <option id="SelectionSort" value="SelectionSort">Selection sort</option>
+              </select>
+              <button id="submitAlgorithmBtn" class="btn btn-primary" style="padding:0px 10px 0px 10px">Sort</button>
             </div>
-          </nav>
+        </div>
+      </nav>
     </section>
-
     <div class="visualization">
-      <div id="bar">
-
-      </div>
+      <div id="bar"></div>
     </div>
-
     <div class="popup">
       <div class="stuff">
         <div class="title">Disclaimer</div>
-        <div class="content">This project is not completed yet.
-          Some algorithms won't work!</div>
+        <div class="content">This project is not completed yet. Some algorithms won't work!</div>
         <button id="popup">I understand</button>
       </div>
     </div>
-
-    <div class="footer text-center">
-      made with love and passion by <a href="https://twitter.com/akhilesh_kafle">Akhilesh Kafle</a>
+    <div class="footer text-center"> made with love and passion by <a href="https://twitter.com/akhilesh_kafle">Akhilesh Kafle</a>
     </div>
-
-
-
-<script src="js/script.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
