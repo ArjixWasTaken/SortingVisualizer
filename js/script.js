@@ -155,6 +155,7 @@ const algos = {
 const notImplementedAlgo = (name) => alert(`${name} not completed yet.`);
 
 globals.submitAlgorithmBtn.addEventListener("click", function () {
-    const algo = algos[globals.algorithms.value] || notImplementedAlgo;
-    algo();
+    const chosenAlgo = globals.algorithms.value;
+    const algo = algos[chosenAlgo] || notImplementedAlgo;
+    algo(chosenAlgo);
 });
