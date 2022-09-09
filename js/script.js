@@ -41,10 +41,10 @@ function deleteChild() {
 const newArray = globals.newArrayBtn;
 newArray.addEventListener("click", function () {
     deleteChild();
-    generateArrayWithSize(arraysize.value);
+    generateArrayWithSize(globals.size.value);
 });
 
-generateArrayWithSize(arraysize.value);
+generateArrayWithSize(globals.size.value);
 
 // disabling and enabling function
 function disable() {
