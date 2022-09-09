@@ -68,13 +68,11 @@ globals.speed.addEventListener("input", function (e) {
     //console.log(delay)
 });
 
-function sleep(delay) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("");
-        }, delay);
-    });
-}
+const getVal = (node) => parseFloat(node.style.height);
+const changeColor = (node, color) => {
+    node.style.background = color;
+};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function BubbleSort() {
     var stuff = globals.bar.children;
@@ -118,29 +116,119 @@ async function InsertionSort() {
         stuff[i].style.background = "blue";
         await sleep(delay);
         while (j >= 0 && parseInt(stuff[j].style.height) > parseInt(current)) {
-            stuff[j].style.background = "blue";
+            changeColor(stuff[j], "blue");
             stuff[j + 1].style.height = stuff[j].style.height;
             j--;
 
             await sleep(delay);
 
             for (let r = i; r >= 0; r--) {
-                stuff[r].style.background = "green";
+                changeColor(stuff[r], "green");
             }
         }
         stuff[j + 1].style.height = current;
-        stuff[i].style.background = "green";
+        changeColor(stuff[i], "green");
     }
     globals.submitAlgorithmBtn.innerHTML = "Sort";
     enable();
 }
 
-//merge sort
-async function mergeSort() {
-    console.log("merge sort is sorted");
+async function MergeSort() {
+    //// smth is wrong, and i dunno what
+    // async function mergeArrays(leftArray, rightArray) {
+    //     let ary = [];
+    //     while (leftArray.length && rightArray.length) {
+    //         await sleep(delay);
+    //         const leftNode = leftArray[0];
+    //         const rightNode = rightArray[0];
+    //         leftNode.style.background = "blue";
+    //         rightNode.style.background = "blue";
+    //         const leftNum = parseFloat(leftArray[0].style.height);
+    //         const rightNum = parseFloat(rightArray[0].style.height);
+    //         if (leftNum < rightNum) {
+    //             ary.push(leftArray.shift());
+    //         } else {
+    //             ary.push(rightArray.shift());
+    //         }
+    //         await sleep(delay);
+    //         leftNode.style.background = "skyblue";
+    //         rightNode.style.background = "skyblue";
+    //     }
+    //     for (const arr of [ary, leftArray, rightArray]) {
+    //         const heights = arr.map((res) => parseFloat(res.style.height)).sort((a, b) => (a > b ? -1 : 1));
+    //         for (let i = 0; i < arr.length; i++) {
+    //             arr[i].style.background = "blue";
+    //             await sleep(delay * 0.8);
+    //             arr[i].style.height = `${heights[i]}px`;
+    //             await sleep(delay * 0.8);
+    //             arr[i].style.background = "skyblue";
+    //         }
+    //     }
+    //     return [...ary, ...leftArray, ...rightArray];
+    // }
+    // async function merge_sort(unsortedArray) {
+    //     const midle_index = unsortedArray.length / 2;
+    //     if (unsortedArray.length < 2) {
+    //         return unsortedArray;
+    //     }
+    //     const leftArray = unsortedArray.splice(0, midle_index);
+    //     return await mergeArrays(await merge_sort(leftArray), await merge_sort(unsortedArray));
+    // }
+    // await merge_sort(Array.from(globals.bar.children));
 }
-async function quickSort() {
-    console.log("quick sort is sorted");
+
+Array.prototype.isSorted = function () {
+    let second_index;
+    for (let first_index = 0; first_index < this.length; first_index++) {
+        second_index = first_index + 1;
+        if (this[second_index] - this[first_index] < 0) return false;
+    }
+    return true;
+};
+
+async function QuickSort() {
+    // broken quick sort, almost works but not quite
+
+    async function inner(arr) {
+        // Base case
+        if (!arr.length) return [];
+        const [head, ...tail] = arr,
+            left = [],
+            right = [];
+
+        changeColor(head, "green");
+        for (const e of tail) {
+            changeColor(e, "blue");
+
+            await sleep(delay);
+            if (getVal(e) < getVal(head)) left.push(e);
+            else right.push(e);
+
+            changeColor(e, "skyblue");
+        }
+        changeColor(head, "skyblue");
+
+        const leftVals = left.map(getVal),
+            rightVals = right.map(getVal),
+            headVal = getVal(head);
+
+        for (let i = 1; i < arr.length; i++) {
+            if (i < leftVals.length) {
+                arr[i].style.height = `${leftVals[i]}px`;
+            } else if (i === leftVals.length) {
+                arr[i].style.height = `${headVal}px`;
+            } else if (rightVals.length) {
+                arr[i].style.height = `${rightVals[i - leftVals.length - 1]}px`;
+            }
+        }
+
+        return (await inner(left)).concat(head, await inner(right));
+    }
+
+    disable();
+    const array = Array.from(globals.bar.children);
+    console.log(await inner(array));
+    enable();
 }
 
 async function selectionSort() {
