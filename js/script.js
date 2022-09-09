@@ -106,7 +106,7 @@ async function BubbleSort() {
 }
 
 async function InsertionSort() {
-    var stuff = globals.bar;
+    var stuff = globals.bar.children;
     var l = stuff.length;
     globals.submitAlgorithmBtn.innerHTML = "Sorting..";
 
