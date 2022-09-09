@@ -79,7 +79,7 @@ function sleep(delay) {
 //sorting algorithms
 //bubble sort
 async function bubbleSort() {
-    var stuff = globals.bar;
+    var stuff = globals.bar.children;
     for (let i = 0; i < stuff.length - 1; i++) {
         for (let j = 0; j < stuff.length - i - 1; j++) {
             stuff[j].style.background = "rgb(5, 62, 85)";
